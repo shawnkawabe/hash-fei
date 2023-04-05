@@ -5,14 +5,12 @@ f = codecs.open("list.txt", "r", "utf-8")
 text = f.read()
 texts = text.split("\n")
 texts_to_decode = {}
+
 for key in texts:
     keysToTexts = key.split('" - ')
     keysToTexts[0] = keysToTexts[0].replace('"', '')
     valuesToTexts = keysToTexts[1].split(' - ')
-    texts_to_decode[keysToTexts[0]] = [valuesToTexts[0],valuesToTexts[1]]
-
-for key in texts_to_decode.keys():
-    texts_to_decode[key][1] = texts_to_decode[key][1].strip()
+    texts_to_decode[keysToTexts[0]] = [valuesToTexts[0],valuesToTexts[1].strip()]
 
 for key in texts_to_decode.keys():
 
