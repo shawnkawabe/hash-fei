@@ -1,43 +1,61 @@
-# import hashlib
+import hashlib
+import codecs
 
-# mystring = "A primeira das instituições criadas pelo Pe. Roberto Sabóia de Medeiros foi a antiga Escola Superior de Administração de Negócios de São Paulo - ESAN/SP."
-
-# validateSHAHash = "d24de3ec3835115c576a55188a31761b73af93ed2c45a171c810bb66b24b08f9"
-
-# validateMD5Hash = "c850e1a34a6ed572e0758ccd9c615bda"
-
-# byteString = mystring.encode('utf-8')
-
-# shaHash = hashlib.new('sha256')
-
-# md5Hash = hashlib.new('md5')
-
-# shaHash.update(byteString)
-
-# md5Hash.update(byteString)
-
-# if shaHash.hexdigest() == validateSHAHash:
-#     print('Igual SHA-256')
-
-# if md5Hash.hexdigest() == validateMD5Hash:
-#     print('Igual MD5')
-
-f = open("list.txt", "r")
+f = codecs.open("list.txt", "r", "utf-8")
 text = f.read()
+# print(text)
 texts = text.split("\n")
 texts_to_decode = {}
 for key in texts:
     keysToTexts = key.split('" - ')
     keysToTexts[0] = keysToTexts[0].replace('"', '')
     valuesToTexts = keysToTexts[1].split(' - ')
-    print(keysToTexts)
-    print(valuesToTexts)
+    # print('-----------')
+    # print(valuesToTexts[1])
+    # print('-----------')
     texts_to_decode[keysToTexts[0]] = [valuesToTexts[0],valuesToTexts[1]]
 
-for keys in texts_to_decode.keys():
-    print(f'key {keys}\n')
-    print(f'value {texts_to_decode[keys]}\n')
+for key in texts_to_decode.keys():
+    texts_to_decode[key][1] = texts_to_decode[key][1].strip()
 
-print(texts)
-print(" -------- \n")
-print(texts_to_decode)
+for key in texts_to_decode.keys():
+
+    # print(texts_to_decode[key])
+    # print(texts_to_decode[key][1])
+
+    string = texts_to_decode[key][1]
+    # print(string)
+    
+    byteString = key.encode('utf-8')
+
+    shaHash = hashlib.new('sha256')
+    md5Hash = hashlib.new('md5')
+
+    shaHash.update(byteString)
+    md5Hash.update(byteString)
+
+    sha256HashedString = shaHash.hexdigest()
+    md5HashedString = md5Hash.hexdigest()
+    # print(string)
+    # print(texts_to_decode[key][1], '\n\n')
+
+    # print(f'string => {key}\n')
+
+    # print(md5HashedString)
+    # print(texts_to_decode[key][1],'\n')
+
+    # if sha256HashedString == texts_to_decode[key][0]:
+    #     print(f'sha hash => {sha256HashedString}\n')
+    #     print(f'sha256 => {texts_to_decode[key][0]}\n')
+    
+    
+    # print(md5HashedString)
+    # print(string)
+    if md5HashedString == string:
+        print(f'md5 hash => {md5HashedString}\n')
+        print(f'md5 => {texts_to_decode[key][1]}\n')
+
+    if sha256HashedString == texts_to_decode[key][0] and md5HashedString == texts_to_decode[key][1]:
+        print(f'key => {key}\n')
+        print(f'sha256 => {texts_to_decode[key][0]}\n')
+        print(f'md5 => {texts_to_decode[key][1]}\n')
