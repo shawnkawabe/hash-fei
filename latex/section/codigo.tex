@@ -1,0 +1,15 @@
+\chapter{Código} \label{codigo}
+
+Para a codificação dessa atividade foi utilizada a linguagem de programação Python.
+A geração dos Hashes das frases foi feita utilizando a bilbioteca hashlib. Para 
+tornar o programa mais dinâmico, as frases e os Hashes que foram analisados foram 
+colocados em um arquivo texto (list.txt) para que fosse possível a leitura e 
+comparação do Hashes gerados com os analisados. Assim é possível adicionar mais 
+frases e hashes para analise, seguindo o padrão de adicionar mais uma linha no 
+arquivo, contendo: frase entre aspas seguida de espaço, um traço, mais um espaço 
+e o Hash SHA256, seguido de outro espaço outro traço, outro espaço e o Hash MD5.
+
+Após a leitura das frases, foi criado uma estrutura de dados de chave e valor, 
+onde a chave era a frase e o valor um array contendo os dois Hashes a serem 
+verificados. Após a verificação, caso ambos os Hashes SHA-256 e MD5 geradods 
+fossem iguais fornecidos, a frase pode ser considerada verdadeira.
