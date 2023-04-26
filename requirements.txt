@@ -1,4 +1,3 @@
-codecs
 pandas
 dataframe_image
 unittest
