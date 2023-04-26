@@ -1,0 +1,5 @@
+pip3
+haslib
+codecs
+pandas
+dataframe_image
