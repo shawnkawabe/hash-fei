@@ -1,4 +1,4 @@
-haslib
+hashlib
 codecs
 pandas
 dataframe_image
