@@ -1,4 +1,1 @@
 hashlib
-pandas
-dataframe_image
-unittest
